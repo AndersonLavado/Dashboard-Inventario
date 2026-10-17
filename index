@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CELSA - Dashboard de Inventario en Planta</title>
+<style>
+:root{--green:#E30613;--green2:#E30613;--teal:#E30613;--ink:#1A1A1A;--muted:#666;--line:#D1D1D6;--bg:#F5F5F7;--white:#fff;--blue:#2563eb;--amber:#d97706;--red:#E30613;--slate:#64748b;--shadow:0 4px 12px rgba(0,0,0,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+header{background:#fff;color:#1A1A1A;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:4px solid #E30613;border-bottom:1px solid #D1D1D6;box-shadow:0 4px 10px rgba(0,0,0,.05)}
+.brand{display:flex;align-items:center;gap:14px}.logo{font-size:20px;background:#E30613;color:#fff;border-radius:3px;padding:9px 12px;font-weight:900;letter-spacing:1px}.brand h1{font-size:clamp(19px,2.1vw,28px);margin:0;font-weight:800;letter-spacing:.2px;color:#1A1A1A}.brand p{margin:3px 0 0;color:#666}.head-meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:12px;color:#555}.live{background:#E30613;color:white;border-radius:7px;padding:8px 13px;font-weight:800;white-space:nowrap}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 90px)}aside{background:#E30613;color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:8px}.navbtn{border:0;background:transparent;color:inherit;text-align:left;padding:13px 12px;border-radius:10px;cursor:pointer;font-weight:650;display:flex;gap:11px;align-items:center}.navbtn span:first-child{font-size:18px;width:24px;text-align:center}.navbtn:hover{background:#b80510}.navbtn.active{background:#b80510;color:white;box-shadow:inset 3px 0 #fff}.navnote{margin-top:auto;font-size:12px;opacity:.7;padding:12px}
+main{padding:22px;min-width:0}.page{display:none}.page.active{display:block}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 16px}.section-head h2{margin:0;font-size:21px;border-left:4px solid #E30613;padding-left:10px}.section-head p{margin:4px 0 0;color:var(--muted)}.section-tag{color:#E30613;background:#fff0f1;padding:7px 10px;border-radius:8px;font-weight:750;font-size:12px;white-space:nowrap;border:1px solid #ffd1d5}
+.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.kpi,.panel,.location-card{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.kpi{padding:17px;min-width:0}.kpi-top{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:650;font-size:12px}.kpi-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:#fff0f1;color:#E30613;font-size:21px;flex-shrink:0}.kpi-value{font-size:clamp(22px,2.1vw,31px);font-weight:850;letter-spacing:-.7px;margin:8px 0 2px}.kpi-sub{font-size:12px;color:var(--muted)}.progress{height:8px;background:#e8eef2;border-radius:99px;overflow:hidden;margin-top:10px}.progress span{height:100%;display:block;background:linear-gradient(90deg,#E30613,#ff5963);border-radius:99px}.two-col{grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);margin-bottom:16px}.panel{overflow:hidden}.panel-title{background:#fff;color:#1A1A1A;padding:13px 15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:2px solid #E30613}.panel-body{padding:15px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:650px;font-size:12px}th{background:#F5F5F7;color:#333;text-align:left;font-weight:750;white-space:nowrap;border-top:1px solid #D1D1D6}td,th{padding:11px 10px;border-bottom:1px solid #e7edf1}tbody tr:hover{background:#f7fbfa}.status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:800;white-space:nowrap}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.ok{color:#087f5b;background:#dcf7eb}.warn{color:#a45b00;background:#fff0d6}.late{color:#c52e38;background:#ffe4e6}.idle{color:#52677d;background:#e9eff4}.mini-progress{display:flex;align-items:center;gap:8px;min-width:105px}.mini-progress .progress{flex:1;margin:0;height:7px;min-width:55px}.mini-progress b{font-size:11px;min-width:30px}.chart-area{height:250px;display:flex;align-items:flex-end;gap:12px;padding:20px 10px 28px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 48px,#eaf0f3 49px,#eaf0f3 50px)}.bar-col{height:100%;flex:1;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;gap:7px;min-width:0}.bar{width:min(36px,70%);background:linear-gradient(#26c6a3,#087f68);border-radius:6px 6px 0 0;min-height:3px}.bar-label{font-size:10px;color:var(--muted);text-align:center}.chart-legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{display:flex;flex-direction:column;gap:5px;min-width:155px;flex:1}.field label{font-size:12px;color:#52677d;font-weight:750}.field input,.field select{border:1px solid #E30613;border-radius:9px;background:white;padding:10px 11px;color:var(--ink);font:inherit;min-width:0;width:100%;outline:none;min-height:43px}.field input:focus,.field select:focus{border-color:#E30613;box-shadow:0 0 0 3px #E3061322}.filter-panel{padding:14px;margin-bottom:16px}.location-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.location-card{padding:16px;border-top:3px solid #E30613}.location-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.location-title h3{margin:0;font-size:16px}.location-title p{margin:3px 0;color:var(--muted);font-size:12px}.loc-metric{display:flex;justify-content:space-between;align-items:end;margin:14px 0 8px}.loc-metric strong{font-size:24px}.loc-meta{font-size:12px;color:var(--muted)}.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #e8eef2;padding-top:12px;margin-top:12px}.time-label{font-size:11px;color:var(--muted);margin-bottom:3px}.time-value{font-weight:750;font-size:12px}.expand{border:0;background:transparent;color:#E30613;font:inherit;font-weight:800;cursor:pointer;padding:8px 0 0}.detail{margin-top:10px;padding:11px;background:#fff6f6;border:1px solid #ffdadd;border-radius:9px;font-size:12px;display:grid;gap:5px}.summary-strip{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.summary-box{padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px}.summary-box .s-label{font-size:12px;color:var(--muted)}.summary-box strong{display:block;font-size:23px;margin-top:5px}.product-kpis{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:16px}.product-kpi{padding:20px;border-radius:14px;background:white;border:1px solid var(--line);box-shadow:var(--shadow)}.product-kpi .symbol{font-size:21px;font-weight:900;display:inline-grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#fff0f1;color:#E30613;margin-bottom:10px}.product-kpi.cu .symbol{background:#fff0f1;color:#E30613}.product-kpi.al .symbol{background:#f0f0f2;color:#555}.product-kpi .label{color:var(--muted);font-size:12px}.product-kpi strong{display:block;font-size:clamp(22px,2vw,30px);margin:4px 0}.product-kpi small{color:var(--muted)}.product-table{min-width:760px}.group-row{cursor:pointer}.group-row td:first-child{font-weight:800}.chev{display:inline-block;width:19px;color:#E30613;font-size:14px}.subrow{background:#fbfdfd}.subrow td{padding-left:28px}.subrow-2{background:#f4f9f8}.subrow-2 td{padding-left:45px}.empty{padding:25px;text-align:center;color:var(--muted)}.footnote{color:var(--muted);font-size:11px;margin-top:12px}.pill{display:inline-block;background:#fff0f1;color:#B80510;padding:4px 8px;border-radius:6px;font-size:11px}
+.loading{position:fixed;inset:0;background:rgba(255,255,255,.85);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;z-index:9999}.loading.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #D1D1D6;border-top-color:#E30613;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:1100px){.layout{grid-template-columns:180px minmax(0,1fr)}main{padding:16px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){header{padding:14px}.layout{display:block}aside{position:sticky;top:0;z-index:5;flex-direction:row;overflow:auto;padding:8px;gap:5px}.navbtn{white-space:nowrap;padding:10px;font-size:12px}.navbtn span:first-child{width:auto}.navnote{display:none}main{padding:12px}.kpis{gap:9px}.kpi{padding:12px}.kpi-icon{width:32px;height:32px}.location-grid,.product-kpis{grid-template-columns:1fr}.summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.head-meta{gap:8px}.head-meta .meta-date{display:none}.section-head{align-items:center}.section-head h2{font-size:18px}.panel-body{padding:10px}.time-grid{gap:8px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div><div class="logo">CELSA</div><div style="font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-top:3px">Conductores Eléctricos</div></div><div><h1>CONTROL DE INVENTARIO EN PLANTA</h1><p>Seguimiento gerencial · Jornada de inventario</p></div></div>
+  <div class="head-meta"><span class="meta-date">▦ Actualización cada 60s</span><span class="live">● EN VIVO</span><span>Última actualización<br><b id="updateTime">Cargando...</b></span></div>
+</header>
+<div class="layout">
+<aside>
+  <button class="navbtn active" data-page="overview"><span>⌂</span> Resumen general</button>
+  <button class="navbtn" data-page="locations"><span>▤</span> Seguimiento por ubicación</button>
+  <button class="navbtn" data-page="product112"><span>◈</span> Detalle Prod. 112</button>
+  <button class="navbtn" data-page="product104"><span>◈</span> Detalle Prod. 104</button>
+  <button class="navbtn" data-page="product102"><span>◈</span> Detalle Prod. 102</button>
+  <button class="navbtn" data-page="product106"><span>◈</span> Detalle Prod. 106</button>
+  <div class="navnote">▣ Planta industrial<br>Datos en vivo desde Google Sheets</div>
+</aside>
+<main>
+<section class="page active" id="overview">
+  <div class="section-head"><div><h2>1. Dashboard ejecutivo — avance general</h2><p>Vista consolidada de los cuatro tipos de inventario.</p></div><span class="section-tag">● Resumen gerencial</span></div>
+  <div class="grid kpis">
+    <div class="kpi"><div class="kpi-top"><span class="kpi-icon">◔</span>Avance global</div><div class="kpi-value" id="globalProgress">0%</div><div class="kpi-sub" id="globalRecords">0 de 0 registros</div><div class="progress"><span id="globalBar" style="width:0%"></span></div></div>
+    <div class="kpi"><div class="kpi-top"><span class="kpi-icon">⌖</span>Ubicaciones con actividad</div><div class="kpi-value" id="globalActiveLocations">0 / 0</div><div class="kpi-sub" id="globalInactiveLocations">0 sin primer registro</div><div class="progress"><span id="globalActiveBar" style="width:0%"></span></div></div>
+    <div class="kpi"><div class="kpi-top"><span class="kpi-icon" style="background:#e4efff;color:#245fc1">◷</span>Último registro general</div><div class="kpi-value" id="globalLastTime">—</div><div class="kpi-sub" id="globalLastDate">Sin registros</div></div>
+    <div class="kpi"><div class="kpi-top"><span class="kpi-icon" style="background:#fff0d9;color:#c77800">⚠</span>Ubicaciones en riesgo</div><div class="kpi-value" style="color:var(--red)" id="globalRisk">0</div><div class="kpi-sub">Por debajo del ritmo esperado</div></div>
+  </div>
+  <div class="grid two-col">
+    <div class="panel"><div class="panel-title"><span>⌖ Avance por ubicación</span><span class="pill">Todas las hojas</span></div><div class="table-wrap"><table><thead><tr><th>Ubicación</th><th>Registros</th><th>Meta</th><th>Avance</th><th>Primer registro</th><th>Último registro</th><th>Duración</th><th>Estado</th></tr></thead><tbody id="overviewRows"><tr><td colspan="8" class="empty">Cargando datos...</td></tr></tbody></table></div></div>
+    <div class="panel"><div class="panel-title"><span>▥ Ritmo de captura por ubicación</span><span class="pill">Total registros</span></div><div class="panel-body"><div class="chart-area" id="captureChart"></div><div class="chart-legend"><span><i class="dot" style="background:#E30613"></i>Registros</span></div></div></div>
+  </div>
+  <div class="panel"><div class="panel-title"><span>◷ Duración y actividad general</span><span class="pill">Primer registro → último registro</span></div><div class="panel-body grid summary-strip" style="margin-bottom:0">
+    <div class="summary-box"><div class="s-label">Primer registro general</div><strong id="firstReg">—</strong><div class="kpi-sub" id="firstRegDate">—</div></div>
+    <div class="summary-box"><div class="s-label">Último registro general</div><strong id="lastReg">—</strong><div class="kpi-sub" id="lastRegDate">—</div></div>
+    <div class="summary-box"><div class="s-label">Duración transcurrida</div><strong id="durTotal">—</strong><div class="kpi-sub">Desde el primer registro</div></div>
+    <div class="summary-box"><div class="s-label">Registros pendientes</div><strong id="pendTotal">0</strong><div class="kpi-sub">Meta total − registros válidos</div></div>
+  </div></div>
+</section>
+
+<section class="page" id="locations">
+  <div class="section-head"><div><h2>2. Seguimiento por ubicación</h2><p>Las ubicaciones se obtienen del campo “Ubicación” de cada hoja.</p></div><span class="section-tag">● Seguimiento operativo</span></div>
+  <div class="grid summary-strip">
+    <div class="summary-box"><div class="s-label">Ubicaciones en meta</div><strong style="color:var(--green2)" id="locOK">0</strong><div class="kpi-sub">Cumplen el ritmo esperado</div></div>
+    <div class="summary-box"><div class="s-label">En atención</div><strong style="color:var(--amber)" id="locWarn">0</strong><div class="kpi-sub">Revisar avance</div></div>
+    <div class="summary-box"><div class="s-label">Retrasadas</div><strong style="color:var(--red)" id="locLate">0</strong><div class="kpi-sub">Requieren seguimiento</div></div>
+    <div class="summary-box"><div class="s-label">Registros consolidados</div><strong id="locTotal">0</strong><div class="kpi-sub">Todos los tipos</div></div>
+  </div>
+  <div class="panel filter-panel"><div class="filters">
+    <div class="field"><label for="locationFilter">Ubicación</label><select id="locationFilter"><option value="Todas">Todas las ubicaciones</option></select></div>
+    <div class="field"><label for="statusFilter">Estado</label><select id="statusFilter"><option>Todos</option><option>En meta</option><option>Atención</option><option>Retrasado</option><option>Sin iniciar</option></select></div>
+    <div class="field"><label for="searchLocation">Buscar ubicación</label><input id="searchLocation" placeholder="Escribe el nombre..."></div>
+    <div class="field"><label for="sortLocation">Ordenar por</label><select id="sortLocation"><option value="low">Menor avance</option><option value="high">Mayor avance</option><option value="name">Nombre de ubicación</option><option value="records">Mayor cantidad de registros</option></select></div>
+  </div></div>
+  <div class="grid location-grid" id="locationCards"></div>
+</section>
+
+<!-- 🟢 NUEVAS PESTAÑAS PARA CADA PRODUCTO -->
+<template id="productPageTemplate">
+  <div class="section-head"><div><h2>Detalle Producto</h2><p>Vista de composición de peso con desglose por ubicación, producto y lote.</p></div><span class="section-tag">● Detalle</span></div>
+  
+  <div class="panel filter-panel"><div class="filters">
+    <div class="field"><label class="lblProd">Producto</label><select class="filtProd"><option value="Todos">Todos los productos</option></select></div>
+    <div class="field"><label class="lblLoc">Ubicación</label><select class="filtLoc"><option value="Todas">Todas las ubicaciones</option></select></div>
+    <div class="field"><label class="lblMode">Agrupar detalle por</label><select class="filtMode"><option value="location">Ubicación</option><option value="product">Producto</option></select></div>
+  </div></div>
+
+  <div class="grid product-kpis">
+    <div class="product-kpi"><div class="symbol">⚖</div><div class="label">Peso neto</div><strong class="netTotal">0 t</strong><small class="netTotalKg">0 kg exactos</small></div>
+    <div class="product-kpi cu"><div class="symbol">Cu</div><div class="label">Peso Cu</div><strong class="cuTotal">0 t</strong><small class="cuTotalKg">0 kg exactos</small></div>
+    <div class="product-kpi al"><div class="symbol">Al</div><div class="label">Peso Al</div><strong class="alTotal">0 t</strong><small class="alTotalKg">0 kg exactos</small></div>
+  </div>
+  
+  <div class="panel">
+    <div class="panel-title"><span>◈ Resumen y detalle de inventario</span><span class="pill productCount">0 productos</span></div>
+    <div class="table-wrap">
+      <table class="product-table">
+        <thead><tr><th>Detalle</th><th>Ubicación / Producto</th><th>Código</th><th>Cantidad (km)</th><th>Peso neto (kg)</th><th>Peso Cu (kg)</th><th>Peso Al (kg)</th></tr></thead>
+        <tbody class="productRows"><tr><td colspan="7" class="empty">Cargando...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
+<section class="page" id="product112"></section>
+<section class="page" id="product104"></section>
+<section class="page" id="product102"></section>
+<section class="page" id="product106"></section>
+
+</main>
+</div>
+
+<div class="loading" id="loading"><div class="spinner"></div><p style="font-weight:700;color:#555">Cargando datos del dashboard...</p></div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbx4UvnvL2JwBTSPXjADy_vqqW_4aVn-VFS4yGxmC5t4DwC6YZ_Jp0V9cmj5lX994yy_/exec'; 
+
+let DATA = null;
+let segundosRestantes = 60;
+
+const fmt = n => Number(n || 0).toLocaleString('es-PE', { maximumFractionDigits: 2 });
+
+function statusOf(s) {
+  if (s.total === 0) return 'Sin iniciar';
+  if (s.porcentaje >= 100) return 'En meta';
+  if (s.restantes <= (DATA ? DATA.umbral : 50)) return 'Atención';
+  return 'Retrasado';
+}
+function statusClass(s) {
+  const st = statusOf(s);
+  return st === 'En meta' ? 'ok' : st === 'Atención' ? 'warn' : st === 'Retrasado' ? 'late' : 'idle';
+}
+
+// 🟢 Formateo de hora exacto (13:51 pm)
+function formatDateTime(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+}
+function formatTimeShort(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: true });
+}
+function formatDateShort(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+function formatDuration(min) {
+  if (!min) return '—';
+  if (min < 60) return min + ' min';
+  const d = Math.floor(min / (60 * 24));
+  const h = Math.floor((min % (60 * 24)) / 60);
+  const m = min % 60;
+  const parts = [];
+  if (d) parts.push(d + ' d');
+  if (h) parts.push(h + ' h');
+  if (m) parts.push(m + ' min');
+  return parts.join(' ') || '0 min';
+}
+
+function showLoading(v) {
+  document.getElementById('loading').classList[v ? 'add' : 'remove']('show');
+}
+
+async function apiGet() {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 30000);
+    const finalUrl = API_URL + '?action=dashboardData&t=' + Date.now();
+    const resp = await fetch(finalUrl, { cache: 'no-store', signal: controller.signal });
+    clearTimeout(timer);
+    
+    if (!resp.ok) throw new Error('HTTP ' + resp.status + ' al conectar con Google Apps Script.');
+    const text = await resp.text();
+    if (text.trim().startsWith('<')) throw new Error('El servidor devolvió HTML. Revisa los permisos de Apps Script.');
+    try { return JSON.parse(text); } catch (e) { throw new Error('Formato JSON inválido.'); }
+  } catch (err) { throw err; }
+}
+
+async function cargarDatos(manual) {
+  if (manual) showLoading(true);
+  try {
+    const res = await apiGet();
+    if (!res || !res.ok) throw new Error((res && res.msg) || 'El backend no devolvió un OK.');
+    
+    DATA = res;
+    renderAll();
+    document.getElementById('updateTime').textContent =
+      new Date(res.timestamp).toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  } catch (err) {
+    console.error(err);
+    alert('Error al cargar datos:\n' + err.message);
+  } finally {
+    showLoading(false);
+    segundosRestantes = 60;
+  }
+}
+
+function renderAll() {
+  renderOverview();
+  renderLocations();
+  renderProductPages(); 
+}
+
+function renderOverview() {
+  const r = DATA.resumen;
+
+  document.getElementById('globalProgress').textContent = r.porcentajeGlobal + '%';
+  document.getElementById('globalRecords').textContent =
+    fmt(r.totalRegistros) + ' de ' + fmt(r.metaTotal) + ' registros';
+  document.getElementById('globalBar').style.width = Math.min(100, r.porcentajeGlobal) + '%';
+
+  document.getElementById('globalActiveLocations').textContent =
+    r.ubicacionesActivas + ' / ' + r.ubicacionesTotales;
+  document.getElementById('globalInactiveLocations').textContent =
+    (r.ubicacionesTotales - r.ubicacionesActivas) + ' sin primer registro';
+  document.getElementById('globalActiveBar').style.width =
+    (r.ubicacionesTotales ? (r.ubicacionesActivas / r.ubicacionesTotales) * 100 : 0) + '%';
+
+  document.getElementById('globalLastTime').textContent = formatTimeShort(r.ultimoRegistro);
+  document.getElementById('globalLastDate').textContent = formatDateShort(r.ultimoRegistro);
+
+  const enRiesgo = DATA.seguimiento.filter(s => s.total === 0 || s.restantes <= DATA.umbral).length;
+  document.getElementById('globalRisk').textContent = enRiesgo;
+
+  document.getElementById('firstReg').textContent = formatTimeShort(r.primerRegistro);
+  document.getElementById('firstRegDate').textContent = formatDateShort(r.primerRegistro);
+  document.getElementById('lastReg').textContent = formatTimeShort(r.ultimoRegistro);
+  document.getElementById('lastRegDate').textContent = formatDateShort(r.ultimoRegistro);
+  document.getElementById('durTotal').textContent = formatDuration(r.duracionMin);
+  document.getElementById('pendTotal').textContent = fmt(Math.max(0, r.metaTotal - r.totalRegistros));
+
+  const rows = DATA.seguimiento.map(s => {
+    const p = s.porcentaje;
+    const st = statusOf(s);
+    return `<tr>
+      <td><b>${s.ubicacion}</b></td>
+      <td>${fmt(s.total)}</td>
+      <td>${fmt(s.tarjetas)}</td>
+      <td><div class="mini-progress"><div class="progress"><span style="width:${p}%"></span></div><b>${p}%</b></div></td>
+      <td>${formatDateTime(s.primerRegistroFecha)}</td>
+      <td>${formatDateTime(s.ultimoRegistroFecha)}</td>
+      <td>${formatDuration(s.duracionMin)}</td>
+      <td><span class="status ${statusClass(s)}">${st}</span></td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="8" class="empty">Sin registros</td></tr>`;
+  document.getElementById('overviewRows').innerHTML = rows;
+
+  const chart = document.getElementById('captureChart');
+  const max = Math.max(...DATA.seguimiento.map(s => s.total), 1);
+  chart.innerHTML = DATA.seguimiento.map(s => {
+    const h = Math.max(3, Math.round(s.total / max * 100));
+    return `<div class="bar-col"><div class="bar" title="${s.ubicacion}: ${s.total} registros" style="height:${h}%"></div><div class="bar-label">${s.ubicacion.slice(0,3)}</div></div>`;
+  }).join('');
+}
+
+function fillSelect(el, values, allLabel, allValue) {
+  if (!el) return;
+  const old = el.value;
+  el.innerHTML = `<option value="${allValue}">${allLabel}</option>` +
+    values.map(v => `<option value="${v}">${v}</option>`).join('');
+  if ([...el.options].some(o => o.value === old)) el.value = old;
+}
+
+function renderLocations() {
+  fillSelect(document.getElementById('locationFilter'), [...new Set(DATA.seguimiento.map(s => s.ubicacion))], 'Todas las ubicaciones', 'Todas');
+
+  const loc = document.getElementById('locationFilter').value;
+  const state = document.getElementById('statusFilter').value;
+  const search = document.getElementById('searchLocation').value.toLowerCase();
+  const sort = document.getElementById('sortLocation').value;
+
+  let lista = DATA.seguimiento.slice();
+  if (loc !== 'Todas') lista = lista.filter(s => s.ubicacion === loc);
+  if (state !== 'Todos') lista = lista.filter(s => statusOf(s) === state);
+  if (search) lista = lista.filter(s => s.ubicacion.toLowerCase().includes(search));
+
+  if (sort === 'low') lista.sort((a, b) => a.porcentaje - b.porcentaje);
+  else if (sort === 'high') lista.sort((a, b) => b.porcentaje - a.porcentaje);
+  else if (sort === 'records') lista.sort((a, b) => b.total - a.total);
+  else lista.sort((a, b) => a.ubicacion.localeCompare(b.ubicacion));
+
+  let ok = 0, warn = 0, late = 0, totalRegs = 0;
+  DATA.seguimiento.forEach(s => {
+    const st = statusOf(s);
+    if (st === 'En meta') ok++;
+    else if (st === 'Atención') warn++;
+    else if (st === 'Retrasado') late++;
+    totalRegs += s.total;
+  });
+  document.getElementById('locOK').textContent = ok;
+  document.getElementById('locWarn').textContent = warn;
+  document.getElementById('locLate').textContent = late;
+  document.getElementById('locTotal').textContent = fmt(totalRegs);
+
+  const cont = document.getElementById('locationCards');
+  if (!lista.length) {
+    cont.innerHTML = '<div class="panel empty">No hay ubicaciones que coincidan.</div>';
+    return;
+  }
+
+  cont.innerHTML = lista.map((s, i) => {
+    const p = s.porcentaje;
+    const st = statusOf(s);
+    const color = st === 'En meta' ? 'linear-gradient(90deg,#0b8d77,#11b99b)' :
+                  st === 'Atención' ? '#d97706' : st === 'Retrasado' ? '#dc4242' : '#64748b';
+    const tipos = Object.keys(s.porTipo || {}).map(t => `${t}: ${s.porTipo[t]}`).join(' · ') || '—';
+    return `<article class="location-card">
+      <div class="location-title">
+        <div><h3>${s.ubicacion}</h3><p>Distribución: ${tipos}</p></div>
+        <span class="status ${statusClass(s)}">${st}</span>
+      </div>
+      <div class="loc-metric">
+        <div>
+          <div class="loc-meta">Registros ingresados</div>
+          <strong>${fmt(s.total)}</strong>
+          <span class="loc-meta"> / ${fmt(s.tarjetas)} meta</span>
+        </div>
+        <strong>${p}%</strong>
+      </div>
+      <div class="progress"><span style="width:${p}%;background:${color}"></span></div>
+      <div class="time-grid">
+        <div><div class="time-label">Primer registro</div><div class="time-value">${formatDateTime(s.primerRegistroFecha)}</div></div>
+        <div><div class="time-label">Último registro</div><div class="time-value">${formatDateTime(s.ultimoRegistroFecha)}</div></div>
+      </div>
+      <div class="time-grid" style="margin-top:0">
+        <div><div class="time-label">Duración</div><div class="time-value">${formatDuration(s.duracionMin)}</div></div>
+        <div><div class="time-label">Pendientes</div><div class="time-value">${fmt(s.restantes)} registros</div></div>
+      </div>
+      <button class="expand" data-expand="${i}">＋ Ver detalle</button>
+      <div class="detail" id="detail-${i}" hidden>
+        <div><b>Meta:</b> ${fmt(s.tarjetas)} registros</div>
+        <div><b>Avance:</b> ${p}%</div>
+        <div><b>Estado:</b> ${st}</div>
+        <div><b>Por tipo:</b> ${tipos}</div>
+      </div>
+    </article>`;
+  }).join('');
+
+  document.querySelectorAll('[data-expand]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = document.getElementById('detail-' + btn.dataset.expand);
+      d.hidden = !d.hidden;
+      btn.textContent = d.hidden ? '＋ Ver detalle' : '− Ocultar detalle';
+    });
+  });
+}
+
+// 🟢 RENDERIZADO DE LAS PÁGINAS DE PRODUCTO (CON FILTROS Y 3 NIVELES)
+function renderProductPages() {
+  const tipos = ['112', '104', '102', '106'];
+  
+  tipos.forEach(tipo => {
+    const page = document.getElementById('product' + tipo);
+    if (!page) return;
+
+    // Clonar template si no tiene contenido aún
+    if (page.innerHTML.trim() === '') {
+      const tmpl = document.getElementById('productPageTemplate');
+      page.appendChild(tmpl.content.cloneNode(true));
+    }
+
+    const dataTipo = DATA.porTipo.find(t => t.tipo === tipo) || { ubicaciones: [] };
+    const ubicaciones = dataTipo.ubicaciones || [];
+
+    // Llenar combos de filtro únicos
+    const productosUnicos = new Set();
+    ubicaciones.forEach(u => u.productos.forEach(p => productosUnicos.add(p.producto)));
+    
+    const elProd = page.querySelector('.filtProd');
+    const elLoc = page.querySelector('.filtLoc');
+    const elMode = page.querySelector('.filtMode');
+
+    fillSelect(elProd, [...productosUnicos], 'Todos los productos', 'Todos');
+    fillSelect(elLoc, ubicaciones.map(u => u.ubicacion), 'Todas las ubicaciones', 'Todas');
+
+    function drawTable() {
+      const prodFilt = elProd.value;
+      const locFilt = elLoc.value;
+      const mode = elMode.value;
+
+      let totNeto = 0, totCu = 0, totAl = 0, countProds = 0;
+
+      let html = '';
+
+      // Lógica de despliegue
+      ubicaciones.forEach(ub => {
+        if (locFilt !== 'Todas' && ub.ubicacion !== locFilt) return;
+
+        let ubHTML = '';
+        let ubHasData = false;
+        let ubNeto = 0, ubCu = 0, ubAl = 0, ubCant = 0;
+
+        ub.productos.forEach(prod => {
+          if (prodFilt !== 'Todos' && prod.producto !== prodFilt) return;
+          
+          ubHasData = true;
+          ubNeto += prod.pesoNeto; ubCu += prod.pesoCu; ubAl += prod.pesoAl; ubCant += prod.cantidad;
+          countProds++;
+
+          let cantProd = prod.cantidad;
+          if (tipo === '112' || tipo === '104') cantProd = prod.cantidad / 1000;
+
+          ubHTML += `<tr class="subrow child-loc-${tipo}-${ub.ubicacion.replace(/\s/g,'')}" hidden>
+            <td>↳ Prod</td>
+            <td><b>${prod.producto}</b> <span style="color:#64748b">(${prod.codigo})</span></td>
+            <td>${prod.codigo}</td>
+            <td>${fmt(cantProd)}</td>
+            <td>${fmt(prod.pesoNeto)}</td>
+            <td>${fmt(prod.pesoCu)}</td>
+            <td>${fmt(prod.pesoAl)}</td>
+          </tr>`;
+
+          // Nivel 3: Lotes
+          prod.lotes.forEach(lote => {
+            let cantLote = lote.cantidad;
+            if (tipo === '112' || tipo === '104') cantLote = lote.cantidad / 1000;
+
+            ubHTML += `<tr class="subrow-2 child-prod-${tipo}-${ub.ubicacion.replace(/\s/g,'')}-${prod.codigo}" hidden>
+              <td>↳ Lote</td>
+              <td>${lote.lote}</td>
+              <td>—</td>
+              <td>${fmt(cantLote)}</td>
+              <td>${fmt(lote.pesoNeto)}</td>
+              <td>${fmt(lote.pesoCu)}</td>
+              <td>${fmt(lote.pesoAl)}</td>
+            </tr>`;
+          });
+        });
+
+        if (ubHasData) {
+          let cantUb = ubCant;
+          if (tipo === '112' || tipo === '104') cantUb = ubCant / 1000;
+          
+          html += `<tr class="group-row" data-ub="${ub.ubicacion.replace(/\s/g,'')}">
+            <td><span class="chev" id="chev-loc-${tipo}-${ub.ubicacion.replace(/\s/g,'')}">▶</span> Ubicación</td>
+            <td><b>${ub.ubicacion}</b></td>
+            <td>—</td>
+            <td><b>${fmt(cantUb)}</b></td>
+            <td><b>${fmt(ubNeto)}</b></td>
+            <td><b>${fmt(ubCu)}</b></td>
+            <td><b>${fmt(ubAl)}</b></td>
+          </tr>` + ubHTML;
+
+          totNeto += ubNeto; totCu += ubCu; totAl += ubAl;
+        }
+      });
+
+      // 🟢 TONELADAS Y KG
+      page.querySelector('.netTotal').textContent = fmt(totNeto / 1000) + ' t';
+      page.querySelector('.netTotalKg').textContent = fmt(totNeto) + ' kg exactos';
+      page.querySelector('.cuTotal').textContent = fmt(totCu / 1000) + ' t';
+      page.querySelector('.cuTotalKg').textContent = fmt(totCu) + ' kg exactos';
+      page.querySelector('.alTotal').textContent = fmt(totAl / 1000) + ' t';
+      page.querySelector('.alTotalKg').textContent = fmt(totAl) + ' kg exactos';
+      page.querySelector('.productCount').textContent = countProds + ' registro(s)';
+
+      page.querySelector('.productRows').innerHTML = html || `<tr><td colspan="7" class="empty">Sin registros para los filtros.</td></tr>`;
+
+      // Listeners para Nivel 1 -> Nivel 2
+      page.querySelectorAll('.group-row').forEach(row => {
+        row.addEventListener('click', (e) => {
+          if (e.target.closest('.subrow')) return; // Evitar conflicto
+          const ub = row.dataset.ub;
+          const children = page.querySelectorAll(`.child-loc-${tipo}-${ub}`);
+          const isOpen = children.length && !children[0].hidden;
+          children.forEach(c => c.hidden = isOpen);
+          page.querySelector(`#chev-loc-${tipo}-${ub}`).textContent = isOpen ? '▶' : '▼';
+        });
+      });
+
+      // Listeners para Nivel 2 -> Nivel 3
+      page.querySelectorAll('.subrow').forEach(row => {
+        row.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const match = row.className.match(/child-loc-${tipo}-(.*)/);
+          if (!match) return;
+          const ub = match[1];
+          const cod = row.querySelectorAll('td')[2].textContent.trim();
+          
+          const children = page.querySelectorAll(`.child-prod-${tipo}-${ub}-${cod}`);
+          const isOpen = children.length && !children[0].hidden;
+          children.forEach(c => c.hidden = isOpen);
+        });
+      });
+    }
+
+    elProd.addEventListener('change', drawTable);
+    elLoc.addEventListener('change', drawTable);
+    elMode.addEventListener('change', drawTable);
+
+    drawTable(); // Dibujo inicial
+  });
+}
+
+document.querySelectorAll('.navbtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === btn.dataset.page));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+['locationFilter', 'statusFilter', 'sortLocation'].forEach(id => {
+  document.getElementById(id).addEventListener('change', renderLocations);
+});
+document.getElementById('searchLocation').addEventListener('input', renderLocations);
+
+function tick() {
+  segundosRestantes--;
+  if (segundosRestantes <= 0) cargarDatos(false);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  cargarDatos(true);
+  setInterval(tick, 1000);
+});
+</script>
+</body>
+</html>
