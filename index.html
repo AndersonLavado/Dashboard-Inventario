@@ -8,10 +8,15 @@
 :root{--green:#E30613;--green2:#E30613;--teal:#E30613;--ink:#1A1A1A;--muted:#666;--line:#D1D1D6;--bg:#F5F5F7;--white:#fff;--blue:#2563eb;--amber:#d97706;--red:#E30613;--slate:#64748b;--shadow:0 4px 12px rgba(0,0,0,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
 header{background:#fff;color:#1A1A1A;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:4px solid #E30613;border-bottom:1px solid #D1D1D6;box-shadow:0 4px 10px rgba(0,0,0,.05)}
-.brand{display:flex;align-items:center;gap:14px}.logo{font-size:20px;background:#E30613;color:#fff;border-radius:3px;padding:9px 12px;font-weight:900;letter-spacing:1px}.brand h1{font-size:clamp(19px,2.1vw,28px);margin:0;font-weight:800;letter-spacing:.2px;color:#1A1A1A}.brand p{margin:3px 0 0;color:#666}.head-meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:12px;color:#555}.live{background:#E30613;color:white;border-radius:7px;padding:8px 13px;font-weight:800;white-space:nowrap}
+.brand{display:flex;align-items:center;gap:14px}
+.logo-block{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.logo-box{background:#E30613;color:#fff;font-weight:900;font-size:22px;letter-spacing:2px;padding:8px 16px;border-radius:4px;text-align:center;line-height:1}
+.logo-sub{font-size:8px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-top:4px;text-align:center;white-space:nowrap;color:#000}
+.brand h1{font-size:clamp(19px,2.1vw,28px);margin:0;font-weight:800;letter-spacing:.2px;color:#1A1A1A}.brand p{margin:3px 0 0;color:#666}.head-meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:12px;color:#555}.live{background:#E30613;color:white;border-radius:7px;padding:8px 13px;font-weight:800;white-space:nowrap}
+.btn-refresh{background:#E30613;color:#fff;border:none;border-radius:7px;padding:8px 15px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .2s}.btn-refresh:hover{background:#333}.btn-refresh:disabled{background:#999;cursor:not-allowed}
 .layout{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 90px)}aside{background:#E30613;color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:8px}.navbtn{border:0;background:transparent;color:inherit;text-align:left;padding:13px 12px;border-radius:10px;cursor:pointer;font-weight:650;display:flex;gap:11px;align-items:center}.navbtn span:first-child{font-size:18px;width:24px;text-align:center}.navbtn:hover{background:#b80510}.navbtn.active{background:#b80510;color:white;box-shadow:inset 3px 0 #fff}.navnote{margin-top:auto;font-size:12px;opacity:.7;padding:12px}
 main{padding:22px;min-width:0}.page{display:none}.page.active{display:block}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 16px}.section-head h2{margin:0;font-size:21px;border-left:4px solid #E30613;padding-left:10px}.section-head p{margin:4px 0 0;color:var(--muted)}.section-tag{color:#E30613;background:#fff0f1;padding:7px 10px;border-radius:8px;font-weight:750;font-size:12px;white-space:nowrap;border:1px solid #ffd1d5}
-.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.kpi,.panel,.location-card{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.kpi{padding:17px;min-width:0}.kpi-top{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:650;font-size:12px}.kpi-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:#fff0f1;color:#E30613;font-size:21px;flex-shrink:0}.kpi-value{font-size:clamp(22px,2.1vw,31px);font-weight:850;letter-spacing:-.7px;margin:8px 0 2px}.kpi-sub{font-size:12px;color:var(--muted)}.progress{height:8px;background:#e8eef2;border-radius:99px;overflow:hidden;margin-top:10px}.progress span{height:100%;display:block;background:linear-gradient(90deg,#E30613,#ff5963);border-radius:99px}.two-col{grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);margin-bottom:16px}.panel{overflow:hidden}.panel-title{background:#fff;color:#1A1A1A;padding:13px 15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:2px solid #E30613}.panel-body{padding:15px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:650px;font-size:12px}th{background:#F5F5F7;color:#333;text-align:left;font-weight:750;white-space:nowrap;border-top:1px solid #D1D1D6}td,th{padding:11px 10px;border-bottom:1px solid #e7edf1}tbody tr:hover{background:#f7fbfa}.status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:800;white-space:nowrap}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.ok{color:#087f5b;background:#dcf7eb}.warn{color:#a45b00;background:#fff0d6}.late{color:#c52e38;background:#ffe4e6}.idle{color:#52677d;background:#e9eff4}.mini-progress{display:flex;align-items:center;gap:8px;min-width:105px}.mini-progress .progress{flex:1;margin:0;height:7px;min-width:55px}.mini-progress b{font-size:11px;min-width:30px}.chart-area{height:250px;display:flex;align-items:flex-end;gap:12px;padding:20px 10px 28px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 48px,#eaf0f3 49px,#eaf0f3 50px)}.bar-col{height:100%;flex:1;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;gap:7px;min-width:0}.bar{width:min(36px,70%);background:linear-gradient(#26c6a3,#087f68);border-radius:6px 6px 0 0;min-height:3px}.bar-label{font-size:10px;color:var(--muted);text-align:center}.chart-legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{display:flex;flex-direction:column;gap:5px;min-width:155px;flex:1}.field label{font-size:12px;color:#52677d;font-weight:750}.field input,.field select{border:1px solid #E30613;border-radius:9px;background:white;padding:10px 11px;color:var(--ink);font:inherit;min-width:0;width:100%;outline:none;min-height:43px}.field input:focus,.field select:focus{border-color:#E30613;box-shadow:0 0 0 3px #E3061322}.filter-panel{padding:14px;margin-bottom:16px}.location-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.location-card{padding:16px;border-top:3px solid #E30613}.location-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.location-title h3{margin:0;font-size:16px}.location-title p{margin:3px 0;color:var(--muted);font-size:12px}.loc-metric{display:flex;justify-content:space-between;align-items:end;margin:14px 0 8px}.loc-metric strong{font-size:24px}.loc-meta{font-size:12px;color:var(--muted)}.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #e8eef2;padding-top:12px;margin-top:12px}.time-label{font-size:11px;color:var(--muted);margin-bottom:3px}.time-value{font-weight:750;font-size:12px}.expand{border:0;background:transparent;color:#E30613;font:inherit;font-weight:800;cursor:pointer;padding:8px 0 0}.detail{margin-top:10px;padding:11px;background:#fff6f6;border:1px solid #ffdadd;border-radius:9px;font-size:12px;display:grid;gap:5px}.summary-strip{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.summary-box{padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px}.summary-box .s-label{font-size:12px;color:var(--muted)}.summary-box strong{display:block;font-size:23px;margin-top:5px}.product-kpis{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:16px}.product-kpi{padding:20px;border-radius:14px;background:white;border:1px solid var(--line);box-shadow:var(--shadow)}.product-kpi .symbol{font-size:21px;font-weight:900;display:inline-grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#fff0f1;color:#E30613;margin-bottom:10px}.product-kpi.cu .symbol{background:#fff0f1;color:#E30613}.product-kpi.al .symbol{background:#f0f0f2;color:#555}.product-kpi .label{color:var(--muted);font-size:12px}.product-kpi strong{display:block;font-size:clamp(22px,2vw,30px);margin:4px 0}.product-kpi small{color:var(--muted)}.product-table{min-width:760px}.group-row{cursor:pointer}.group-row td:first-child{font-weight:800}.chev{display:inline-block;width:19px;color:#E30613;font-size:14px}.subrow{background:#fbfdfd}.subrow td{padding-left:28px}.subrow-2{background:#f4f9f8}.subrow-2 td{padding-left:45px}.empty{padding:25px;text-align:center;color:var(--muted)}.footnote{color:var(--muted);font-size:11px;margin-top:12px}.pill{display:inline-block;background:#fff0f1;color:#B80510;padding:4px 8px;border-radius:6px;font-size:11px}
+.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.kpi,.panel,.location-card{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.kpi{padding:17px;min-width:0}.kpi-top{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:650;font-size:12px}.kpi-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:#fff0f1;color:#E30613;font-size:21px;flex-shrink:0}.kpi-value{font-size:clamp(22px,2.1vw,31px);font-weight:850;letter-spacing:-.7px;margin:8px 0 2px}.kpi-sub{font-size:12px;color:var(--muted)}.progress{height:8px;background:#e8eef2;border-radius:99px;overflow:hidden;margin-top:10px}.progress span{height:100%;display:block;background:linear-gradient(90deg,#E30613,#ff5963);border-radius:99px}.two-col{grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);margin-bottom:16px}.panel{overflow:hidden}.panel-title{background:#fff;color:#1A1A1A;padding:13px 15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:2px solid #E30613}.panel-body{padding:15px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:650px;font-size:12px}th{background:#F5F5F7;color:#333;text-align:left;font-weight:750;white-space:nowrap;border-top:1px solid #D1D1D6}td,th{padding:11px 10px;border-bottom:1px solid #e7edf1}tbody tr:hover{background:#f7fbfa}.status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:800;white-space:nowrap}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.ok{color:#087f5b;background:#dcf7eb}.warn{color:#a45b00;background:#fff0d6}.late{color:#c52e38;background:#ffe4e6}.idle{color:#52677d;background:#e9eff4}.mini-progress{display:flex;align-items:center;gap:8px;min-width:105px}.mini-progress .progress{flex:1;margin:0;height:7px;min-width:55px}.mini-progress b{font-size:11px;min-width:30px}.chart-area{height:250px;display:flex;align-items:flex-end;gap:12px;padding:20px 10px 28px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 48px,#eaf0f3 49px,#eaf0f3 50px)}.bar-col{height:100%;flex:1;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;gap:7px;min-width:0}.bar{width:min(36px,70%);background:linear-gradient(#26c6a3,#087f68);border-radius:6px 6px 0 0;min-height:3px;position:relative}.bar-label{font-size:10px;color:var(--muted);text-align:center}.bar-val{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:#E30613;white-space:nowrap}.chart-legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{display:flex;flex-direction:column;gap:5px;min-width:155px;flex:1}.field label{font-size:12px;color:#52677d;font-weight:750}.field input,.field select{border:1px solid #E30613;border-radius:9px;background:white;padding:10px 11px;color:var(--ink);font:inherit;min-width:0;width:100%;outline:none;min-height:43px}.field input:focus,.field select:focus{border-color:#E30613;box-shadow:0 0 0 3px #E3061322}.filter-panel{padding:14px;margin-bottom:16px}.location-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.location-card{padding:16px;border-top:3px solid #E30613}.location-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.location-title h3{margin:0;font-size:16px}.location-title p{margin:3px 0;color:var(--muted);font-size:12px}.loc-metric{display:flex;justify-content:space-between;align-items:end;margin:14px 0 8px}.loc-metric strong{font-size:24px}.loc-meta{font-size:12px;color:var(--muted)}.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #e8eef2;padding-top:12px;margin-top:12px}.time-label{font-size:11px;color:var(--muted);margin-bottom:3px}.time-value{font-weight:750;font-size:12px}.expand{border:0;background:transparent;color:#E30613;font:inherit;font-weight:800;cursor:pointer;padding:8px 0 0;text-align:left;display:inline-block;transition:color .2s}.expand:hover{color:#b80510}.detail{margin-top:10px;padding:11px;background:#fff6f6;border:1px solid #ffdadd;border-radius:9px;font-size:12px;display:grid;gap:5px}.detail.hidden-detail{display:none!important}.summary-strip{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.summary-box{padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px}.summary-box .s-label{font-size:12px;color:var(--muted)}.summary-box strong{display:block;font-size:23px;margin-top:5px}.product-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:16px}.product-kpi{padding:20px;border-radius:14px;background:white;border:1px solid var(--line);box-shadow:var(--shadow)}.product-kpi .symbol{font-size:21px;font-weight:900;display:inline-grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#fff0f1;color:#E30613;margin-bottom:10px}.product-kpi.cu .symbol{background:#fff0f1;color:#E30613}.product-kpi.al .symbol{background:#f0f0f2;color:#555}.product-kpi .label{color:var(--muted);font-size:12px}.product-kpi strong{display:block;font-size:clamp(22px,2vw,30px);margin:4px 0}.product-kpi small{color:var(--muted)}.product-table{min-width:760px}.group-row{cursor:pointer}.group-row td:first-child{font-weight:800}.chev{display:inline-block;width:19px;color:#E30613;font-size:14px}.subrow{background:#fbfdfd}.subrow td{padding-left:28px}.subrow-2{background:#f4f9f8}.subrow-2 td{padding-left:45px}.empty{padding:25px;text-align:center;color:var(--muted)}.footnote{color:var(--muted);font-size:11px;margin-top:12px}.pill{display:inline-block;background:#fff0f1;color:#B80510;padding:4px 8px;border-radius:6px;font-size:11px}
 .loading{position:fixed;inset:0;background:rgba(255,255,255,.85);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;z-index:9999}.loading.show{display:flex}.spinner{width:48px;height:48px;border:4px solid #D1D1D6;border-top-color:#E30613;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:1100px){.layout{grid-template-columns:180px minmax(0,1fr)}main{padding:16px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){header{padding:14px}.layout{display:block}aside{position:sticky;top:0;z-index:5;flex-direction:row;overflow:auto;padding:8px;gap:5px}.navbtn{white-space:nowrap;padding:10px;font-size:12px}.navbtn span:first-child{width:auto}.navnote{display:none}main{padding:12px}.kpis{gap:9px}.kpi{padding:12px}.kpi-icon{width:32px;height:32px}.location-grid,.product-kpis{grid-template-columns:1fr}.summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.head-meta{gap:8px}.head-meta .meta-date{display:none}.section-head{align-items:center}.section-head h2{font-size:18px}.panel-body{padding:10px}.time-grid{gap:8px}}
@@ -19,8 +24,19 @@ main{padding:22px;min-width:0}.page{display:none}.page.active{display:block}.sec
 </head>
 <body>
 <header>
-  <div class="brand"><div><div class="logo">CELSA</div><div style="font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-top:3px">Conductores Eléctricos</div></div><div><h1>CONTROL DE INVENTARIO EN PLANTA</h1><p>Seguimiento gerencial · Jornada de inventario</p></div></div>
-  <div class="head-meta"><span class="meta-date">▦ Actualización cada 60s</span><span class="live">● EN VIVO</span><span>Última actualización<br><b id="updateTime">Cargando...</b></span></div>
+  <div class="brand">
+    <div class="logo-block">
+      <div class="logo-box">CELSA</div>
+      <div class="logo-sub">CONDUCTORES ELÉCTRICOS</div>
+    </div>
+    <div><h1>CONTROL DE INVENTARIO EN PLANTA</h1><p>Seguimiento gerencial · Jornada de inventario</p></div>
+  </div>
+  <div class="head-meta">
+    <span class="meta-date">▦ Actualización cada 60s</span>
+    <span class="live">● EN VIVO</span>
+    <span>Última actualización<br><b id="updateTime">Cargando...</b></span>
+    <button class="btn-refresh" id="btnRefresh" onclick="cargarDatos(true)"><i class="fas fa-sync-alt"></i> Actualizar</button>
+  </div>
 </header>
 <div class="layout">
 <aside>
@@ -75,22 +91,40 @@ main{padding:22px;min-width:0}.page{display:none}.page.active{display:block}.sec
   <div class="section-head"><div><h2>Detalle Producto</h2><p>Vista de composición de peso con desglose por ubicación, producto y lote.</p></div><span class="section-tag">● Detalle</span></div>
   
   <div class="panel filter-panel"><div class="filters">
-    <div class="field"><label class="lblProd">Producto</label><select class="filtProd"><option value="Todos">Todos los productos</option></select></div>
-    <div class="field"><label class="lblLoc">Ubicación</label><select class="filtLoc"><option value="Todas">Todas las ubicaciones</option></select></div>
-    <div class="field"><label class="lblMode">Agrupar detalle por</label><select class="filtMode"><option value="location">Ubicación</option><option value="product">Producto</option></select></div>
+    <div class="field"><label>Producto</label><select class="filtProd"><option value="Todos">Todos los productos</option></select></div>
+    <div class="field"><label>Ubicación</label><select class="filtLoc"><option value="Todas">Todas las ubicaciones</option></select></div>
+    <div class="field"><label>Agrupar detalle por</label><select class="filtMode"><option value="location">Ubicación</option><option value="product">Producto</option></select></div>
   </div></div>
 
-  <div class="grid product-kpis">
-    <div class="product-kpi"><div class="symbol">⚖</div><div class="label">Peso neto</div><strong class="netTotal">0 t</strong><small class="netTotalKg">0 kg exactos</small></div>
-    <div class="product-kpi cu"><div class="symbol">Cu</div><div class="label">Peso Cu</div><strong class="cuTotal">0 t</strong><small class="cuTotalKg">0 kg exactos</small></div>
-    <div class="product-kpi al"><div class="symbol">Al</div><div class="label">Peso Al</div><strong class="alTotal">0 t</strong><small class="alTotalKg">0 kg exactos</small></div>
+  <div class="product-kpis">
+    <!-- Tarjeta 1: Peso Neto -->
+    <div class="product-kpi neto-card">
+      <div class="symbol">⚖</div>
+      <div class="label">Peso neto</div>
+      <strong class="netTotal">0 t</strong>
+      <small class="netTotalKg">0 kg exactos</small>
+    </div>
+    <!-- Tarjeta 2: Peso Cu / N° Registros -->
+    <div class="product-kpi cu">
+      <div class="symbol">Cu</div>
+      <div class="label">Peso Cu</div>
+      <strong class="cuTotal">0 t</strong>
+      <small class="cuTotalKg">0 kg exactos</small>
+    </div>
+    <!-- Tarjeta 3: Peso Al (oculta en 102/106) -->
+    <div class="product-kpi al">
+      <div class="symbol">Al</div>
+      <div class="label">Peso Al</div>
+      <strong class="alTotal">0 t</strong>
+      <small class="alTotalKg">0 kg exactos</small>
+    </div>
   </div>
   
   <div class="panel">
     <div class="panel-title"><span>◈ Resumen y detalle de inventario</span><span class="pill productCount">0 productos</span></div>
     <div class="table-wrap">
       <table class="product-table">
-        <thead><tr><th>Detalle</th><th>Ubicación / Producto</th><th>Código</th><th>Cantidad (km)</th><th>Peso neto (kg)</th><th>Peso Cu (kg)</th><th>Peso Al (kg)</th></tr></thead>
+        <thead class="tHead"></thead>
         <tbody class="productRows"><tr><td colspan="7" class="empty">Cargando...</td></tr></tbody>
       </table>
     </div>
@@ -126,7 +160,6 @@ function statusClass(s) {
   return st === 'En meta' ? 'ok' : st === 'Atención' ? 'warn' : st === 'Retrasado' ? 'late' : 'idle';
 }
 
-// 🟢 Formateo de hora exacto (13:51 pm)
 function formatDateTime(iso) {
   if (!iso) return '—';
   const d = new Date(iso);
@@ -178,7 +211,10 @@ async function apiGet() {
 }
 
 async function cargarDatos(manual) {
-  if (manual) showLoading(true);
+  if (manual) {
+    showLoading(true);
+    document.getElementById('btnRefresh').disabled = true;
+  }
   try {
     const res = await apiGet();
     if (!res || !res.ok) throw new Error((res && res.msg) || 'El backend no devolvió un OK.');
@@ -192,6 +228,7 @@ async function cargarDatos(manual) {
     alert('Error al cargar datos:\n' + err.message);
   } finally {
     showLoading(false);
+    document.getElementById('btnRefresh').disabled = false;
     segundosRestantes = 60;
   }
 }
@@ -213,7 +250,7 @@ function renderOverview() {
   document.getElementById('globalActiveLocations').textContent =
     r.ubicacionesActivas + ' / ' + r.ubicacionesTotales;
   document.getElementById('globalInactiveLocations').textContent =
-    (r.ubicacionesTotales - r.ubicacionesActivas) + ' sin primer registro';
+    (r.ubicacionesTotales - r.ubicacionesActivas) + ' sin primer registro'; 
   document.getElementById('globalActiveBar').style.width =
     (r.ubicacionesTotales ? (r.ubicacionesActivas / r.ubicacionesTotales) * 100 : 0) + '%';
 
@@ -250,7 +287,12 @@ function renderOverview() {
   const max = Math.max(...DATA.seguimiento.map(s => s.total), 1);
   chart.innerHTML = DATA.seguimiento.map(s => {
     const h = Math.max(3, Math.round(s.total / max * 100));
-    return `<div class="bar-col"><div class="bar" title="${s.ubicacion}: ${s.total} registros" style="height:${h}%"></div><div class="bar-label">${s.ubicacion.slice(0,3)}</div></div>`;
+    return `<div class="bar-col">
+      <div class="bar" title="${s.ubicacion}: ${s.total} registros" style="height:${h}%">
+        <span class="bar-val">${fmt(s.total)}</span>
+      </div>
+      <div class="bar-label">${s.ubicacion.slice(0,3)}</div>
+    </div>`;
   }).join('');
 }
 
@@ -328,7 +370,7 @@ function renderLocations() {
         <div><div class="time-label">Pendientes</div><div class="time-value">${fmt(s.restantes)} registros</div></div>
       </div>
       <button class="expand" data-expand="${i}">＋ Ver detalle</button>
-      <div class="detail" id="detail-${i}" hidden>
+      <div class="detail hidden-detail" id="detail-${i}">
         <div><b>Meta:</b> ${fmt(s.tarjetas)} registros</div>
         <div><b>Avance:</b> ${p}%</div>
         <div><b>Estado:</b> ${st}</div>
@@ -338,15 +380,23 @@ function renderLocations() {
   }).join('');
 
   document.querySelectorAll('[data-expand]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const d = document.getElementById('detail-' + btn.dataset.expand);
-      d.hidden = !d.hidden;
-      btn.textContent = d.hidden ? '＋ Ver detalle' : '− Ocultar detalle';
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const detailDiv = document.getElementById('detail-' + btn.dataset.expand);
+      if (detailDiv) {
+        detailDiv.classList.toggle('hidden-detail');
+        if (detailDiv.classList.contains('hidden-detail')) {
+          btn.textContent = '＋ Ver detalle';
+        } else {
+          btn.textContent = '− Ocultar detalle';
+        }
+      }
     });
   });
 }
 
-// 🟢 RENDERIZADO DE LAS PÁGINAS DE PRODUCTO (CON FILTROS Y 3 NIVELES)
+// 🟢 RENDERIZADO DE LAS PÁGINAS DE PRODUCTO
 function renderProductPages() {
   const tipos = ['112', '104', '102', '106'];
   
@@ -354,7 +404,6 @@ function renderProductPages() {
     const page = document.getElementById('product' + tipo);
     if (!page) return;
 
-    // Clonar template si no tiene contenido aún
     if (page.innerHTML.trim() === '') {
       const tmpl = document.getElementById('productPageTemplate');
       page.appendChild(tmpl.content.cloneNode(true));
@@ -363,7 +412,6 @@ function renderProductPages() {
     const dataTipo = DATA.porTipo.find(t => t.tipo === tipo) || { ubicaciones: [] };
     const ubicaciones = dataTipo.ubicaciones || [];
 
-    // Llenar combos de filtro únicos
     const productosUnicos = new Set();
     ubicaciones.forEach(u => u.productos.forEach(p => productosUnicos.add(p.producto)));
     
@@ -374,6 +422,61 @@ function renderProductPages() {
     fillSelect(elProd, [...productosUnicos], 'Todos los productos', 'Todos');
     fillSelect(elLoc, ubicaciones.map(u => u.ubicacion), 'Todas las ubicaciones', 'Todas');
 
+    // 🟢 MODIFICACIÓN: TARJETAS 102 Y 106
+    const gridKpis = page.querySelector('.product-kpis');
+    const cardCu = page.querySelector('.product-kpi.cu');
+    const cardAl = page.querySelector('.product-kpi.al');
+    const cardNeto = page.querySelector('.neto-card');
+    
+    if (tipo === '102' || tipo === '106') {
+      // Mostrar solo 2 tarjetas
+      cardCu.style.display = ''; // Mantenemos el espacio para la 2da tarjeta
+      cardAl.style.display = 'none';
+      
+      // Tarjeta 1: Peso Neto
+      cardNeto.querySelector('.label').textContent = 'Peso neto';
+      cardNeto.querySelector('.netTotal').textContent = '0 t';
+      cardNeto.querySelector('.netTotalKg').textContent = '0 kg exactos';
+      
+      // Tarjeta 2: N° Registros
+      cardCu.querySelector('.symbol').textContent = '#';
+      cardCu.querySelector('.symbol').style.color = '#1A1A1A';
+      cardCu.querySelector('.symbol').style.background = '#F0F0F2';
+      cardCu.querySelector('.label').textContent = 'Número de Registros';
+      cardCu.querySelector('.cuTotal').textContent = '0';
+      cardCu.querySelector('.cuTotalKg').textContent = 'registros';
+      
+      // Forzar 2 columnas
+      gridKpis.style.gridTemplateColumns = '1fr 1fr';
+    } else {
+      // Restaurar 104 y 112
+      cardCu.style.display = '';
+      cardAl.style.display = '';
+      
+      cardNeto.querySelector('.label').textContent = 'Peso neto';
+      cardNeto.querySelector('.netTotal').textContent = '0 t';
+      cardNeto.querySelector('.netTotalKg').textContent = '0 kg exactos';
+      
+      cardCu.querySelector('.symbol').textContent = 'Cu';
+      cardCu.querySelector('.symbol').style.color = '#E30613';
+      cardCu.querySelector('.symbol').style.background = '#fff0f1';
+      cardCu.querySelector('.label').textContent = 'Peso Cu';
+      cardCu.querySelector('.cuTotal').textContent = '0 t';
+      cardCu.querySelector('.cuTotalKg').textContent = '0 kg exactos';
+      
+      gridKpis.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+
+    // Definir Cabecera de Tabla dinámicamente
+    const th = page.querySelector('.tHead');
+    let headers = ['Detalle', 'Ubicación / Producto', 'Código'];
+    if (tipo === '112' || tipo === '104') {
+      headers.push('Cantidad (km)', 'Peso neto (t)', 'Peso Cu (t)', 'Peso Al (t)');
+    } else {
+      headers.push('Peso neto (t)'); // 🟢 102 y 106 ahora en Toneladas
+    }
+    th.innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
+
     function drawTable() {
       const prodFilt = elProd.value;
       const locFilt = elLoc.value;
@@ -383,102 +486,173 @@ function renderProductPages() {
 
       let html = '';
 
-      // Lógica de despliegue
-      ubicaciones.forEach(ub => {
-        if (locFilt !== 'Todas' && ub.ubicacion !== locFilt) return;
+      let listToRender = [];
 
-        let ubHTML = '';
-        let ubHasData = false;
-        let ubNeto = 0, ubCu = 0, ubAl = 0, ubCant = 0;
+      if (mode === 'location') {
+        ubicaciones.forEach(ub => {
+          if (locFilt !== 'Todas' && ub.ubicacion !== locFilt) return;
+          let ubHasData = false;
+          let ubNeto = 0, ubCu = 0, ubAl = 0, ubCant = 0;
+          let prodsArr = [];
 
-        ub.productos.forEach(prod => {
-          if (prodFilt !== 'Todos' && prod.producto !== prodFilt) return;
+          ub.productos.forEach(prod => {
+            if (prodFilt !== 'Todos' && prod.producto !== prodFilt) return;
+            ubHasData = true;
+            ubNeto += prod.pesoNeto; ubCu += prod.pesoCu; ubAl += prod.pesoAl; ubCant += prod.cantidad;
+            countProds++;
+            prodsArr.push(prod);
+          });
+
+          if (ubHasData) {
+            listToRender.push({
+              mainName: ub.ubicacion,
+              mainData: { neto: ubNeto, cu: ubCu, al: ubAl, cant: ubCant },
+              children: prodsArr
+            });
+            totNeto += ubNeto; totCu += ubCu; totAl += ubAl;
+          }
+        });
+      } else {
+        // Agrupación por PRODUCTO
+        const prodsMap = {};
+        ubicaciones.forEach(ub => {
+          if (locFilt !== 'Todas' && ub.ubicacion !== locFilt) return;
+          ub.productos.forEach(prod => {
+            if (prodFilt !== 'Todos' && prod.producto !== prodFilt) return;
+            if (!prodsMap[prod.codigo]) {
+              prodsMap[prod.codigo] = { 
+                mainName: prod.producto, codigo: prod.codigo,
+                mainData: { neto: 0, cu: 0, al: 0, cant: 0 }, 
+                children: [] 
+              };
+            }
+            prodsMap[prod.codigo].mainData.neto += prod.pesoNeto;
+            prodsMap[prod.codigo].mainData.cu += prod.pesoCu;
+            prodsMap[prod.codigo].mainData.al += prod.pesoAl;
+            prodsMap[prod.codigo].mainData.cant += prod.cantidad;
+            
+            // Los hijos ahora serán las ubicaciones de ese producto
+            prodsMap[prod.codigo].children.push({ 
+              ...prod, 
+              isChildUbic: true,
+              nombreMostrar: ub.ubicacion // Para corregir el undefined
+            });
+            countProds++;
+          });
+        });
+        Object.values(prodsMap).forEach(p => {
+          listToRender.push(p);
+          totNeto += p.mainData.neto; totCu += p.mainData.cu; totAl += p.mainData.al;
+        });
+      }
+
+      listToRender.forEach((item, i) => {
+        let cantMain = item.mainData.cant;
+        if (tipo === '112' || tipo === '104') cantMain = cantMain / 1000;
+
+        let colsMain = `<td>${item.codigo || '—'}</td>`;
+        if (tipo === '112' || tipo === '104') {
+          colsMain += `<td><b>${fmt(cantMain)}</b></td><td><b>${fmt(item.mainData.neto / 1000)} t</b></td><td><b>${fmt(item.mainData.cu / 1000)} t</b></td><td><b>${fmt(item.mainData.al / 1000)} t</b></td>`;
+        } else {
+          // 🟢 102 y 106 ahora en Toneladas
+          colsMain += `<td><b>${fmt(item.mainData.neto / 1000)} t</b></td>`;
+        }
+
+        html += `<tr class="group-row" data-idx="${i}">
+          <td><span class="chev" id="chev-${tipo}-${i}">▶</span> ${mode === 'location' ? 'Ubicación' : 'Producto'}</td>
+          <td><b>${item.mainName}</b></td>
+          ${colsMain}
+        </tr>`;
+
+        item.children.forEach(child => {
+          let cantChild = child.cantidad;
+          if (tipo === '112' || tipo === '104') cantChild = cantChild / 1000;
+
+          let colsChild = `<td>${child.codigo}</td>`;
+          if (tipo === '112' || tipo === '104') {
+            colsChild += `<td>${fmt(cantChild)}</td><td>${fmt(child.pesoNeto / 1000)} t</td><td>${fmt(child.pesoCu / 1000)} t</td><td>${fmt(child.pesoAl / 1000)} t</td>`;
+          } else {
+            // 🟢 102 y 106 ahora en Toneladas
+            colsChild += `<td>${fmt(child.pesoNeto / 1000)} t</td>`;
+          }
+
+          // Nivel 2
+          let nomHijo = mode === 'location' ? (child.producto + ' ('+child.codigo+')') : (child.nombreMostrar || child.ubicacion);
           
-          ubHasData = true;
-          ubNeto += prod.pesoNeto; ubCu += prod.pesoCu; ubAl += prod.pesoAl; ubCant += prod.cantidad;
-          countProds++;
-
-          let cantProd = prod.cantidad;
-          if (tipo === '112' || tipo === '104') cantProd = prod.cantidad / 1000;
-
-          ubHTML += `<tr class="subrow child-loc-${tipo}-${ub.ubicacion.replace(/\s/g,'')}" hidden>
-            <td>↳ Prod</td>
-            <td><b>${prod.producto}</b> <span style="color:#64748b">(${prod.codigo})</span></td>
-            <td>${prod.codigo}</td>
-            <td>${fmt(cantProd)}</td>
-            <td>${fmt(prod.pesoNeto)}</td>
-            <td>${fmt(prod.pesoCu)}</td>
-            <td>${fmt(prod.pesoAl)}</td>
+          html += `<tr class="subrow child-${tipo}-${i}" hidden>
+            <td>↳ ${mode === 'location' ? 'Prod' : 'Ubi'}</td>
+            <td>${nomHijo}</td>
+            ${colsChild}
           </tr>`;
 
-          // Nivel 3: Lotes
-          prod.lotes.forEach(lote => {
+          // Nivel 3 (Lotes)
+          child.lotes.forEach(lote => {
             let cantLote = lote.cantidad;
-            if (tipo === '112' || tipo === '104') cantLote = lote.cantidad / 1000;
+            if (tipo === '112' || tipo === '104') cantLote = cantLote / 1000;
 
-            ubHTML += `<tr class="subrow-2 child-prod-${tipo}-${ub.ubicacion.replace(/\s/g,'')}-${prod.codigo}" hidden>
+            let colsLote = `<td>—</td>`;
+            if (tipo === '112' || tipo === '104') {
+              colsLote += `<td>${fmt(cantLote)}</td><td>${fmt(lote.pesoNeto / 1000)} t</td><td>${fmt(lote.pesoCu / 1000)} t</td><td>${fmt(lote.pesoAl / 1000)} t</td>`;
+            } else {
+              // 🟢 102 y 106 ahora en Toneladas
+              colsLote += `<td>${fmt(lote.pesoNeto / 1000)} t</td>`;
+            }
+
+            html += `<tr class="subrow-2 child-lote-${tipo}-${i}-${child.codigo}" hidden>
               <td>↳ Lote</td>
               <td>${lote.lote}</td>
-              <td>—</td>
-              <td>${fmt(cantLote)}</td>
-              <td>${fmt(lote.pesoNeto)}</td>
-              <td>${fmt(lote.pesoCu)}</td>
-              <td>${fmt(lote.pesoAl)}</td>
+              ${colsLote}
             </tr>`;
           });
         });
-
-        if (ubHasData) {
-          let cantUb = ubCant;
-          if (tipo === '112' || tipo === '104') cantUb = ubCant / 1000;
-          
-          html += `<tr class="group-row" data-ub="${ub.ubicacion.replace(/\s/g,'')}">
-            <td><span class="chev" id="chev-loc-${tipo}-${ub.ubicacion.replace(/\s/g,'')}">▶</span> Ubicación</td>
-            <td><b>${ub.ubicacion}</b></td>
-            <td>—</td>
-            <td><b>${fmt(cantUb)}</b></td>
-            <td><b>${fmt(ubNeto)}</b></td>
-            <td><b>${fmt(ubCu)}</b></td>
-            <td><b>${fmt(ubAl)}</b></td>
-          </tr>` + ubHTML;
-
-          totNeto += ubNeto; totCu += ubCu; totAl += ubAl;
-        }
       });
 
-      // 🟢 TONELADAS Y KG
-      page.querySelector('.netTotal').textContent = fmt(totNeto / 1000) + ' t';
-      page.querySelector('.netTotalKg').textContent = fmt(totNeto) + ' kg exactos';
-      page.querySelector('.cuTotal').textContent = fmt(totCu / 1000) + ' t';
-      page.querySelector('.cuTotalKg').textContent = fmt(totCu) + ' kg exactos';
-      page.querySelector('.alTotal').textContent = fmt(totAl / 1000) + ' t';
-      page.querySelector('.alTotalKg').textContent = fmt(totAl) + ' kg exactos';
+      const numCols = (tipo === '112' || tipo === '104') ? 7 : 4;
+
+      // 🟢 ACTUALIZAR TARJETAS
+      cardNeto.querySelector('.netTotal').textContent = fmt(totNeto / 1000) + ' t';
+      cardNeto.querySelector('.netTotalKg').textContent = fmt(totNeto) + ' kg exactos';
+      
+      if (tipo === '102' || tipo === '106') {
+        cardCu.querySelector('.cuTotal').textContent = fmt(countProds);
+        cardCu.querySelector('.cuTotalKg').textContent = 'registros';
+      } else {
+        const tcu = page.querySelector('.cuTotal');
+        const tcuKg = page.querySelector('.cuTotalKg');
+        const tal = page.querySelector('.alTotal');
+        const talKg = page.querySelector('.alTotalKg');
+
+        tcu.textContent = fmt(totCu / 1000) + ' t';
+        tcuKg.textContent = fmt(totCu) + ' kg exactos';
+        tal.textContent = fmt(totAl / 1000) + ' t';
+        talKg.textContent = fmt(totAl) + ' kg exactos';
+      }
+
       page.querySelector('.productCount').textContent = countProds + ' registro(s)';
 
-      page.querySelector('.productRows').innerHTML = html || `<tr><td colspan="7" class="empty">Sin registros para los filtros.</td></tr>`;
+      page.querySelector('.productRows').innerHTML = html || `<tr><td colspan="${numCols}" class="empty">Sin registros.</td></tr>`;
 
-      // Listeners para Nivel 1 -> Nivel 2
+      // Listeners de Expansión (Niveles 1 y 2)
       page.querySelectorAll('.group-row').forEach(row => {
         row.addEventListener('click', (e) => {
-          if (e.target.closest('.subrow')) return; // Evitar conflicto
-          const ub = row.dataset.ub;
-          const children = page.querySelectorAll(`.child-loc-${tipo}-${ub}`);
+          if (e.target.closest('.subrow')) return;
+          const idx = row.dataset.idx;
+          const children = page.querySelectorAll(`.child-${tipo}-${idx}`);
           const isOpen = children.length && !children[0].hidden;
           children.forEach(c => c.hidden = isOpen);
-          page.querySelector(`#chev-loc-${tipo}-${ub}`).textContent = isOpen ? '▶' : '▼';
+          page.querySelector(`#chev-${tipo}-${idx}`).textContent = isOpen ? '▶' : '▼';
         });
       });
 
-      // Listeners para Nivel 2 -> Nivel 3
       page.querySelectorAll('.subrow').forEach(row => {
         row.addEventListener('click', (e) => {
           e.stopPropagation();
-          const match = row.className.match(/child-loc-${tipo}-(.*)/);
+          const match = row.className.match(new RegExp('child-' + tipo + '-(\\d+)'));
           if (!match) return;
-          const ub = match[1];
-          const cod = row.querySelectorAll('td')[2].textContent.trim();
+          const idx = match[1];
+          const cod = row.querySelectorAll('td')[2].textContent.trim(); // El código está en la 3ra columna
           
-          const children = page.querySelectorAll(`.child-prod-${tipo}-${ub}-${cod}`);
+          const children = page.querySelectorAll(`.child-lote-${tipo}-${idx}-${cod}`);
           const isOpen = children.length && !children[0].hidden;
           children.forEach(c => c.hidden = isOpen);
         });
@@ -489,7 +663,7 @@ function renderProductPages() {
     elLoc.addEventListener('change', drawTable);
     elMode.addEventListener('change', drawTable);
 
-    drawTable(); // Dibujo inicial
+    drawTable();
   });
 }
 
